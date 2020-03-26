@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uppgift</title>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(() => {
+            $(".form").on("submit", (e) => {
+                e.preventDefault();
+                var data = $(e.target).serialize();
+                if ($(e.target).find('input[name="method"]:checked').val() === "get") {
+                    $.get($(e.target).find('input[name="url"]').val(), data, (data) => {
+                        $("#serverResponse").val(data);
+                    });
+                } else {
+                    $.post($(e.target).find('input[name="url"]').val(), data, (data) => {
+                        $("#serverResponse").val(data);
+                    });
+                }
+            });
+        });
+    </script>
+
+</head>
+<body>
+    
+
+    <form method="POST" action="v1/users/getUser.php">
+        <h2>Login!</h2>
+        <input type="text" name="getUser" placeholder="username" required>
+        <br>
+        <input type="password" name="getPassword" placeholder="password" required>
+        <br>
+        <button type="submit" name="getSubmit">Login</button>
+    </form>
+
+    <hr>
+
+    <form method="POST" action="v1/users/addUser.php">
+        <h2>Sign up!</h2>
+        <input type="text" name="user" placeholder="Username" required>
+        <br>
+        <input type="password" name="password" placeholder="Password" required>
+        <br>
+        <button type="submit" value="registrera">Sign up</button>
+    </form> 
+    
+    <br>
+
+    <!-- <a href="v1/users/addUser.php">Sign up</a> -->
+
+
+</body>
+
+</html>
