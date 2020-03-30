@@ -1,10 +1,10 @@
 <?php
-    include("../../objects/product.php");
+    include("../../objects/products.php");
 
-    $users_handler = new product($database_handler);
+    $pro_handler = new products($database_handler);
 
     print_r($_POST);
-//    echo $users_handler->addUser($_POST['user'], $_POST['password']);
+    // echo $users_handler->addUser($_POST['user'], $_POST['password']);
    
 
 ?>

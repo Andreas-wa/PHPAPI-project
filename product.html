@@ -51,11 +51,18 @@
     
     <hr>
 
-    <form action="v1/posts/addProduct.php">
-        <h2>Produkter</h2>
-        
+    <form method="POST" action="v1/posts/addProduct.php">
+        <h2>Produkter!</h2>
+        <input type="text" name="product" placeholder="Namn på produkten...">
+        <br>
+        <input type="number" name="price" placeholder="Pris...">
+        <br>
+        <input type="text" name="size" placeholder="storlek...">
+        <br>
         <button type="submit" name="buy">Köp</button>
     </form>
+
+    <hr>
 
     <!-- <a href="v1/users/addUser.php">Sign up</a> -->
 
