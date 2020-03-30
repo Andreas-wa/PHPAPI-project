@@ -6,11 +6,15 @@ I induviduell uppgiften har jag 4 tabeller
     -   password
     -   token_id
 
+kommer att ta hand om användare, om man logar in eller om man registrerar användare kommer dem att hamna här
+
 2.  "produkts"
     -   id
     -   produkt
     -   price
     -   storlek
+
+alla produkter som finns och skapas är i denna tabel
 
 3.  "orders"
     -   id
@@ -18,11 +22,15 @@ I induviduell uppgiften har jag 4 tabeller
     -   produkt_id
     -   date
 
+om en användare lägger en beställning på en produkt kommer den att hamna här
+
 4.  "tokens"
     -   id
     -   users_id
     -   token/data
     -   date
+
+här kommer alla ny tokens att hamna och delas ut till enskilda användre.
 
 
 Updelning av map struktur:

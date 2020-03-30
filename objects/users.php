@@ -40,7 +40,7 @@ class users {
 
                 $return_object->state = "Success";
                 $return_object->user = $return;
-
+                
             }   else{
                 // annars kommer den att ge ett error meddelande
                 $return_object->state = "ERROR!";
@@ -215,9 +215,9 @@ class users {
                 // kolla tiden
                 $token_timeStamp = $return['date_update'];
                 $diff = time()->$token_timeStamp;
-
+            
                 // om tiden överskrider skiv detta
-                if($diff / 60 > $this->validty_token_time){
+                if(($diff / 60) > $this->validty_token_time){
 
                     $query = "DELETE FROM tokens WHERE user_id=:userID";
                     $statementHandler = $this->database_handler->prepare($query);
