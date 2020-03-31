@@ -1,5 +1,7 @@
 <?php
     include("../../objects/users.php");
+    include("../../objects/products.php");
+
 
     $users_handler = new users($database_handler);
 
