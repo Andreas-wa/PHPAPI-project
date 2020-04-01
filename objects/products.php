@@ -41,6 +41,8 @@ class Products{
             $statmentHandler->bindparam(":product_id", $this->product_id);
             $statmentHandler->execute();
 
+            return $statmentHandler->fetchAll();
+
         }   else{
 
             echo "could not create database statment";
@@ -84,24 +86,77 @@ class Products{
     }
 
 
-    // function för att tabort products
-    public function deleteProduct(){
+    // function för att uppdatera product
+    public function updateProduct($data){
 
-        // query
-        $query = "DELETE FROM products WHERE productID = :product_id";
-        // förbered
-        $statmentHandler = $this->database_handler->prepare($query);
+        // if sats för varje värde som går att ändra på
+        if(!empty($data['product'])){
 
-        // om den körs 
+            $query = "UPDATE products SET product = :product WHERE id = :product_id";
+            $statmentHandler = $this->database_handler->prepare($query);
 
-        // gör den säker (bindihop)
+            $statmentHandler->bindparam(":product", $data['product']);
+            $statmentHandler->bindparam(":product_id", $data['id']);
 
-        // kör
+            $statmentHandler->execute();
+        }
 
-        //annars
+        if(!empty($data['price'])){
 
+            $query = "UPDATE products SET price = :price WHERE id = :product_id";
+            $statmentHandler = $this->database_handler->prepare($query);
 
+            $statmentHandler->bindparam(":price", $data['price']);
+            $statmentHandler->bindparam(":product_id", $data['id']);
+
+            $statmentHandler->execute();
+        }
+
+        if(!empty($data['product'])){
+
+            $query = "UPDATE products SET size = :size WHERE id = :product_id";
+            $statmentHandler = $this->database_handler->prepare($query);
+
+            $statmentHandler->bindparam(":size", $data['size']);
+            $statmentHandler->bindparam(":product_id", $data['id']);
+
+            $statmentHandler->execute();
+        }
+
+        // välj alla products som finns 
+        $query = "SELECT * FROM products WHERE id = :product_id";
+        $statmentHandler = $this->databasehandler->prepare($query);
+
+        $statmentHandler->bindparam("product_id", $data['id']);
+        $statmentHandler->execute();
+
+        echo json_encode($statementHandler->fetch());
+    
     }
+
+
+    // // function för att tabort products
+    // public function deleteProduct(){
+
+    //     // query
+    //     $query = "DELETE FROM products WHERE products_id = :productsID";
+    //     // förbered
+    //     $statmentHandler = $this->database_handler->prepare($query);
+
+    //     // om den körs 
+    //     if($statmentHandler !== false){
+
+    //         // bind
+    //         $statmentHandler->bindparam(':productsID', $products_id_IN);
+            
+    //         // kör
+    //         $success = $statmentHandler->execute();
+
+    //         return $this->deleteProduct();
+    //     }
+       
+
+    // }
 
 }
 

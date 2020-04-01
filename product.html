@@ -27,7 +27,6 @@
 
 </head>
 <body>
-    
 
     <form method="POST" action="v1/users/getUser.php">
         <h2>Login!</h2>
@@ -59,11 +58,29 @@
         <br>
         <input type="text" name="size" placeholder="storlek...">
         <br>
-        <button type="submit">Köp</button>
+        <button type="submit">Köp</button>        
     </form>
+
+    <!-- <a href="v1/posts/updateProduct.php">Uppdatera/Ändra</a> -->
 
     <hr>
 
+    <form method="GET" action="v1/posts/updateProduct.php">
+        
+        <h2>Uppdatera produkten</h2>
+            <input type="text" name="token" placeholder="token">
+            <br />
+            <input type="text" name="url" placeholder="http://" value="http://localhost/testerphp/individuell%20uppgift/v1/posts/updateProduct.php" />
+            <br />
+            <input type="number" name="id" placeholder="id">
+            <br />
+            <input type="text" name="product" placeholder="produkt">
+            <br />
+            <input type="number" name="price" placeholder="price">
+            <br>
+        <button type="submit">Uppdatera produkten</button>
+
+    </form>
     <!-- <a href="v1/users/addUser.php">Sign up</a> -->
 
 

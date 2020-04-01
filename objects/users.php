@@ -282,7 +282,51 @@ class users {
     }
 
 
+    
     private function validateToken(){
+
+        $query = "SELECT user_id, date_update FROM tokens WHERE token=:token";
+        $statementHandler = $this->database_handler->prepare($query);
+
+        if($statementHandler !== false ){
+
+            $statementHandler->bindParam(":token", $token);
+            $statementHandler->execute();
+
+            $token_data = $statementHandler->fetch();
+
+            if(!empty($token_data['date_updated'])) {
+
+                $diff = time() - $token_data['date_updated'];
+
+                if( ($diff / 60) < $this->token_validity_time ) {
+
+                    $query = "UPDATE tokens SET date_updated=:updated_date WHERE token=:token";
+                    $statementHandler = $this->database_handler->prepare($query);
+                    
+                    $updateDate = time();
+                    $statementHandler->bindParam(":updated_date", $updateDate, PDO::PARAM_INT);
+                    $statementHandler->bindParam(":token", $token);
+
+                    $statementHandler->execute();
+
+                    return true;
+
+                } else {
+                    echo "Session closed due to inactivity<br />";
+                    return false;
+                }
+            } else {
+                echo "Could not find token, please login first<br />";
+                return false;
+            }
+
+        } else {
+            echo "Couldnt create statementhandler<br />";
+            return false;
+        }
+
+        return true;
 
     }
 

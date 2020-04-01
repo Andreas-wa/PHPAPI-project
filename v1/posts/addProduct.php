@@ -1,6 +1,7 @@
 <?php
     include("../../objects/products.php");
 
+
     $product_object = new Products($database_handler);
 
     // print_r($_POST);

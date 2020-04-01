@@ -3,8 +3,9 @@
 
     $product_handler = new products($database_handler);
 
-    print_r($_POST);
-    // echo $users_handler->userLogin($_POST['getUser'], $_POST['getPassword']);
+    echo "<pre>";
+    print_r($product_handler->fetchAllProduct());
+    echo "</pre>";
    
 
 ?>
