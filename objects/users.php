@@ -219,13 +219,18 @@ class users {
                 // om tiden överskrider skiv detta
                 if(($diff / 60) > $this->validty_token_time){
 
+                    // query för delete
                     $query = "DELETE FROM tokens WHERE user_id=:userID";
+                    // förbered databasen
                     $statementHandler = $this->database_handler->prepare($query);
 
+                    // bind ihop parametrar och sql 
                     $statementHandler->bindparam(':userID', $userID_IN);
 
+                    // kör
                     $statementHandler->execute();
 
+                    // retunera/ hämta den gjorda token
                     return $this->createToken($userID_IN);
 
                     // annars skriv detta
@@ -267,12 +272,13 @@ class users {
             $statementHandler->bindparam(":token", $uniqToken);
             $statementHandler->bindParam(":current_time", $currentTime, PDO::PARAM_INT);
 
+            // kör statmenthandler
             $statementHandler->execute();
 
-
+            // retunera variabeln för de unika token
             return $uniqToken;
 
-
+            // annars
         }   else {
             return "nooooo!!, token ville inte";
         }
