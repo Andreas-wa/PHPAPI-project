@@ -282,50 +282,70 @@ class users {
     }
 
 
-    
+    // function för att validera token    
     private function validateToken(){
 
+        // query
         $query = "SELECT user_id, date_update FROM tokens WHERE token=:token";
+        // förbered databasem
         $statementHandler = $this->database_handler->prepare($query);
 
+        // if stass
         if($statementHandler !== false ){
 
+            // bind ihop parametrar och sql
             $statementHandler->bindParam(":token", $token);
+            // kör statmenthandler
             $statementHandler->execute();
 
+            // variabel för att hämta data
             $token_data = $statementHandler->fetch();
 
-            if(!empty($token_data['date_updated'])) {
+            // if sats som säger att om det finns data och som kollar tid
 
-                $diff = time() - $token_data['date_updated'];
+            // om den inte är tom (det finns data i satsen)
+            if(!empty($token_data['date_update'])) {
+                
+                // variabel tiden när tokenen gjordes 
+                $diff = time() - $token_data['date_update'];
 
+                // kolla tiden 
                 if( ($diff / 60) < $this->token_validity_time ) {
 
-                    $query = "UPDATE tokens SET date_updated=:updated_date WHERE token=:token";
+                    // sql
+                    $query = "UPDATE tokens SET date_update=:update_date WHERE token=:token";
+                    // förbered databasen
                     $statementHandler = $this->database_handler->prepare($query);
                     
+                    // variabel för tiden
                     $updateDate = time();
-                    $statementHandler->bindParam(":updated_date", $updateDate, PDO::PARAM_INT);
+                    // bind ihop parametrar och sql med en PDO
+                    $statementHandler->bindParam(":update_date", $updateDate, PDO::PARAM_INT);
                     $statementHandler->bindParam(":token", $token);
 
+                    // kör
                     $statementHandler->execute();
 
+                    // retunera if satsen
                     return true;
 
+                    // annars
                 } else {
                     echo "Session closed due to inactivity<br />";
                     return false;
                 }
+                // annars
             } else {
                 echo "Could not find token, please login first<br />";
                 return false;
             }
-
+            // annars
         } else {
             echo "Couldnt create statementhandler<br />";
             return false;
         }
 
+        // retunera allt
         return true;
 
     }
