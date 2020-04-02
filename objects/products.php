@@ -128,12 +128,12 @@ class Products{
 
         // välj alla products som finns 
         $query = "SELECT id, product, price, size FROM products WHERE id = :product_id";
-        $statmentHandler = $this->databasehandler->prepare($query);
+        $statmentHandler = $this->database_handler->prepare($query);
 
         $statmentHandler->bindparam("product_id", $data['id']);
         $statmentHandler->execute();
 
-        echo json_encode($statementHandler->fetch());
+        echo json_encode($statmentHandler->fetch());
     
     }
 

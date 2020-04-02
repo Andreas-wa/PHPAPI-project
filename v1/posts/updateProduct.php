@@ -19,7 +19,7 @@ if(!empty($_GET['token'])) {
             die();
         }
 
-        $post_handler->updatePost($_POST);
+        $post_handler->updateProduct($_POST);
 
 
     } else {

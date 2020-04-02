@@ -8,7 +8,7 @@ class users {
     // user har variabeln $dadatabase_handler som endast kan finns i klassen users
     private $database_handler;
     private $username;
-    private $validty_token_time = 1;
+    private $validty_token_time = 15;
 
     // function för att  
     // __construct(som gör startar ett objekt)
