@@ -318,7 +318,7 @@ class users {
                 $diff = time() - $token_data['date_update'];
 
                 // kolla tiden 
-                if( ($diff / 60) < $this->token_validity_time ) {
+                if( ($diff / 60) > $this->token_validity_time ) {
 
                     // sql
                     $query = "UPDATE tokens SET date_update=:update_date WHERE token=:token";
