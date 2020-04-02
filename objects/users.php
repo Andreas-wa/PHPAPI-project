@@ -38,6 +38,7 @@ class users {
             $return = $this->addToDatabase($user_IN, $password_IN);
             if($return !== false){
 
+                // 
                 $return_object->state = "Success";
                 $return_object->user = $return;
                 
@@ -221,6 +222,7 @@ class users {
 
                     // query för delete
                     $query = "DELETE FROM tokens WHERE user_id=:userID";
+
                     // förbered databasen
                     $statementHandler = $this->database_handler->prepare($query);
 
@@ -284,7 +286,6 @@ class users {
             return "nooooo!!, token ville inte";
         }
         // echo $uniqToken;
-
 
     }
 
