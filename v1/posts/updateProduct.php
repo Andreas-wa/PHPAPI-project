@@ -5,17 +5,17 @@ include('../../objects/users.php');
 $post_handler = new Products($database_handler);
 $user_handler = new Users($database_handler);
 
-if(!empty($_POST['token'])) {
+if(!empty($_GET['token'])) {
 
-    if(!empty($_POST['id'])) { 
+    if(!empty($_GET['id'])) { 
 
-        $token = $_POST['token'];
+        $token = $_GET['token'];
 
         if($user_handler->validateToken($token) === false) {
-            $retObject = new stdClass;
-            $retObject->error = "Token is invalid";
-            $retObject->errorCode = 1338;
-            echo json_encode($retObject);
+            $return_Object = new stdClass;
+            $return_Object->error = "Token is invalid";
+            $return_Object->errorCode = 1338;
+            echo json_encode($return_Object);
             die();
         }
 
@@ -23,17 +23,17 @@ if(!empty($_POST['token'])) {
 
 
     } else {
-        $retObject = new stdClass;
-        $retObject->error = "Invalid id!";
-        $retObject->errorCode = 1336;
+        $return_Object = new stdClass;
+        $return_Object->error = "Invalid id!";
+        $return_Object->errorCode = 1336;
 
-        echo json_encode($retObject);
+        echo json_encode($return_Object);
     }
 
 } else {
-    $retObject = new stdClass;
-    $retObject->error = "No token found!";
-    $retObject->errorCode = 1337;
+    $return_Object = new stdClass;
+    $return_Object->error = "No token found!";
+    $return_Object->errorCode = 1337;
 
-    echo json_encode($retObject);
+    echo json_encode($return_Object);
 }

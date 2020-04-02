@@ -90,6 +90,7 @@ class Products{
     public function updateProduct($data){
 
         // if sats för varje värde som går att ändra på
+        // ändra product
         if(!empty($data['product'])){
 
             $query = "UPDATE products SET product = :product WHERE id = :product_id";
@@ -100,7 +101,8 @@ class Products{
 
             $statmentHandler->execute();
         }
-
+        
+        // ändra price
         if(!empty($data['price'])){
 
             $query = "UPDATE products SET price = :price WHERE id = :product_id";
@@ -112,7 +114,8 @@ class Products{
             $statmentHandler->execute();
         }
 
-        if(!empty($data['product'])){
+        // ändra size
+        if(!empty($data['size'])){
 
             $query = "UPDATE products SET size = :size WHERE id = :product_id";
             $statmentHandler = $this->database_handler->prepare($query);
@@ -124,7 +127,7 @@ class Products{
         }
 
         // välj alla products som finns 
-        $query = "SELECT * FROM products WHERE id = :product_id";
+        $query = "SELECT id, product, price, size FROM products WHERE id = :product_id";
         $statmentHandler = $this->databasehandler->prepare($query);
 
         $statmentHandler->bindparam("product_id", $data['id']);

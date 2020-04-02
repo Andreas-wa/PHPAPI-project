@@ -237,6 +237,7 @@ class users {
                 }   else{
                     return $return['token'];
                 }
+                
                 die;
 
                 // om den inte finns
@@ -289,7 +290,7 @@ class users {
 
 
     // function för att validera token    
-    private function validateToken(){
+    public function validateToken(){
 
         // query
         $query = "SELECT user_id, date_update FROM tokens WHERE token=:token";
