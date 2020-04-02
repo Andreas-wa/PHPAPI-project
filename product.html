@@ -54,13 +54,16 @@
 
     <form method="GET" action="v1/posts/addProduct.php">
         <h2>Produkter!</h2>
+
         <input type="text" name="product" placeholder="Namn på produkten...">
         <br>
         <input type="number" name="price" placeholder="Pris...">
         <br>
         <input type="text" name="size" placeholder="storlek...">
         <br>
-        <button type="submit">Köp</button>
+        <input type="text" name="token" placeholder="token" />
+        <br>
+        <button type="submit">Lägg till produkt</button>
     </form>
 
     <!-- <a href="v1/posts/updateProduct.php">Uppdatera/Ändra</a> -->
@@ -71,21 +74,18 @@
         
         <h2>Uppdatera produkten</h2>
             <input type="text" name="token" placeholder="token">
-            <br />
+            <br>
             <input type="text" name="url" placeholder="http://" value="http://localhost/testerphp/individuell%20uppgift/v1/posts/updateProduct.php" />
-            <br />
+            <br>
             <input type="number" name="id" placeholder="id">
-            <br />
+            <br>
             <input type="text" name="product" placeholder="produkt">
-            <br />
+            <br>
             <input type="number" name="price" placeholder="price">
             <br>
         <button type="submit">Uppdatera produkten</button>
 
-    </form>
-
-    <h2>Produkter</h2>
-    
+    </form>    
 
 </body>
 </html>

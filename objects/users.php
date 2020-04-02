@@ -8,7 +8,7 @@ class users {
     // user har variabeln $dadatabase_handler som endast kan finns i klassen users
     private $database_handler;
     private $username;
-    private $validty_token_time = 15;
+    private $validty_token_time = 1;
 
     // function för att  
     // __construct(som gör startar ett objekt)
@@ -215,7 +215,7 @@ class users {
 
                 // kolla tiden
                 $token_timeStamp = $return['date_update'];
-                $diff = time()->$token_timeStamp;
+                $diff = time() - $token_timeStamp;
             
                 // om tiden överskrider skiv detta
                 if(($diff / 60) > $this->validty_token_time){
@@ -291,7 +291,7 @@ class users {
 
 
     // function för att validera token    
-    public function validateToken(){
+    public function validateToken($token){
 
         // query
         $query = "SELECT user_id, date_update FROM tokens WHERE token=:token";
@@ -318,7 +318,7 @@ class users {
                 $diff = time() - $token_data['date_update'];
 
                 // kolla tiden 
-                if( ($diff / 60) > $this->token_validity_time ) {
+                if( ($diff / 60) < $this->validty_token_time ) {
 
                     // sql
                     $query = "UPDATE tokens SET date_update=:update_date WHERE token=:token";
