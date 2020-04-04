@@ -139,10 +139,10 @@ class Products{
 
 
     // function för att tabort products
-    public function deleteProduct(){
+    public function deleteProduct($delete_param){
 
-        // query
-        $query = "DELETE FROM products WHERE products_id = :productsID";
+        // query (funkar)
+        $query = "DELETE FROM products WHERE id = :productsID";
         // förbered
         $statmentHandler = $this->database_handler->prepare($query);
 
@@ -150,21 +150,26 @@ class Products{
         if($statmentHandler !== false){
 
             // bind
-            $statmentHandler->bindparam(':productsID', $products_id_IN);
+            $statmentHandler->bindparam(':productsID', $delete_param['id']);
             
             // kör
-            $success = $statmentHandler->execute();
+            $deleted = $statmentHandler->execute();
 
-            return $this->deleteProduct();
+            if($deleted == true){
+                echo "Deleted";
+            }   else{
+                echo "DeleteProduct funkar inte";
+            }
         }
     }
 
 
-    public function listProduct(){
 
-        
+    // public function listProduct(){
 
-    }
+
+
+    // }
 }
 
 ?>
