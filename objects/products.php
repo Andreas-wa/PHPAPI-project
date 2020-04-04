@@ -138,29 +138,33 @@ class Products{
     }
 
 
-    // // function för att tabort products
-    // public function deleteProduct(){
+    // function för att tabort products
+    public function deleteProduct(){
 
-    //     // query
-    //     $query = "DELETE FROM products WHERE products_id = :productsID";
-    //     // förbered
-    //     $statmentHandler = $this->database_handler->prepare($query);
+        // query
+        $query = "DELETE FROM products WHERE products_id = :productsID";
+        // förbered
+        $statmentHandler = $this->database_handler->prepare($query);
 
-    //     // om den körs 
-    //     if($statmentHandler !== false){
+        // om den körs 
+        if($statmentHandler !== false){
 
-    //         // bind
-    //         $statmentHandler->bindparam(':productsID', $products_id_IN);
+            // bind
+            $statmentHandler->bindparam(':productsID', $products_id_IN);
             
-    //         // kör
-    //         $success = $statmentHandler->execute();
+            // kör
+            $success = $statmentHandler->execute();
 
-    //         return $this->deleteProduct();
-    //     }
-       
+            return $this->deleteProduct();
+        }
+    }
 
-    // }
 
+    public function listProduct(){
+
+        
+
+    }
 }
 
 ?>
