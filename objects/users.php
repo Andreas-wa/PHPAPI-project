@@ -85,6 +85,7 @@ class users {
 
         }   else{
             // om det inte finns retunera felmeddelande
+            echo "addtodatabae error!";
            return false;
         }
     }
@@ -116,6 +117,7 @@ class users {
                 return true;
             }   else{
                 // om den inte finns
+                print_r ("isUserTaken error");
                 return false;
             }
 
@@ -286,7 +288,6 @@ class users {
             return "nooooo!!, token ville inte";
         }
         // echo $uniqToken;
-
     }
 
 

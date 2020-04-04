@@ -5,11 +5,11 @@ include('../../objects/users.php');
 $product_handler = new Products($database_handler);
 $user_handler = new Users($database_handler);
 
-if(!empty($_GET['token'])) {
+if(!empty($_POST['token'])) {
 
-    if(!empty($_GET['id'])) { 
+    if(!empty($_POST['id'])) { 
 
-        $token = $_GET['token'];
+        $token = $_POST['token'];
 
         if($user_handler->validateToken($token) === false) {
             $return_object = new stdClass;
