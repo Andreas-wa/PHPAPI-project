@@ -11,6 +11,16 @@ if(!empty($_POST['token'])) {
 
         $token = $_POST['token'];
 
+        // ge admin behörighet att ändra
+        $userAdmin = $user_handler->userAdmin($token);
+
+        if($userAdmin === false){
+
+        echo "inte behörighet";
+        die();
+
+        }
+
         if($user_handler->validateToken($token) === false) {
             $return_object = new stdClass;
             $return_object->error = "Token is invalid";

@@ -133,7 +133,7 @@ class Products{
         $statmentHandler->bindparam("product_id", $data['id']);
         $statmentHandler->execute();
 
-        echo json_encode($statmentHandler->fetch());
+        echo json_encode($statmentHandler->fetch()[0]);
     
     }
 

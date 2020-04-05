@@ -12,6 +12,16 @@
         if(!empty($_POST['id'])) { 
     
             $token = $_POST['token'];
+
+            // ge admin behörighet att ta bort produkter
+            $userAdmin = $user_handler->userAdmin($token);
+
+            if($userAdmin === false){
+
+            echo "inte behörighet";
+            die();
+
+            }
     
             if($user_handler->validateToken($token) === false) {
                 $return_object = new stdClass;

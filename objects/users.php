@@ -3,7 +3,7 @@
 include("../../config/database_handler.php");
 
 // gör en klass för user
-class users {
+class Users {
 
     // user har variabeln $dadatabase_handler som endast kan finns i klassen users
     private $database_handler;
@@ -74,8 +74,8 @@ class users {
             $secPassword = md5($password_param);
 
             // koppla ihop queryn med det som skrivs in i inputsen
-            $statementHandler->bindparam(':user', $user_param);
-            $statementHandler->bindparam(':password', $secPassword);
+            $statementHandler->bindParam(':user', $user_param);
+            $statementHandler->bindParam(':password', $secPassword);
 
             // kör frågan
             $statementHandler->execute();
@@ -104,7 +104,7 @@ class users {
         if($statementHandler !== false){
             
             // byt ut värdet från queryn och skriv ut värdet $user_param från functionen
-            $statementHandler->bindparam(":user", $user_param);
+            $statementHandler->bindParam(":user", $user_param);
             // kör statmenthandler
             $statementHandler->execute();
             
@@ -147,8 +147,8 @@ class users {
             $password = md5($password_parameter);
 
             // bind ihop queryn och parametrarna
-            $statementHandler->bindparam(':user_IN', $user_parameter);
-            $statementHandler->bindparam(':password_IN', $password);
+            $statementHandler->bindParam(':user_IN', $user_parameter);
+            $statementHandler->bindParam(':password_IN', $password);
             
             // executea statmenthandlern
             $statementHandler->execute();
@@ -204,7 +204,7 @@ class users {
         // kolla om den funkar
         if($statementHandler !== false){
             // bind parametrar och queryn
-            $statementHandler->bindparam(":userID", $userID_IN);
+            $statementHandler->bindParam(":userID", $userID_IN);
             
             // execute
             $statementHandler->execute();
@@ -229,7 +229,7 @@ class users {
                     $statementHandler = $this->database_handler->prepare($query);
 
                     // bind ihop parametrar och sql 
-                    $statementHandler->bindparam(':userID', $userID_IN);
+                    $statementHandler->bindParam(':userID', $userID_IN);
 
                     // kör
                     $statementHandler->execute();
@@ -273,8 +273,8 @@ class users {
             
             // bind parametrar och query
             $currentTime = time();
-            $statementHandler->bindparam(":userid", $user_id_param);
-            $statementHandler->bindparam(":token", $uniqToken);
+            $statementHandler->bindParam(":userid", $user_id_param);
+            $statementHandler->bindParam(":token", $uniqToken);
             $statementHandler->bindParam(":current_time", $currentTime, PDO::PARAM_INT);
 
             // kör statmenthandler
@@ -359,6 +359,80 @@ class users {
 
     }
 
+
+    // function för att kolla användarens id
+    private function getUserId($token){
+
+        $query = "SELECT user_id FROM tokens WHERE token=:token"; 
+        $statementHandler = $this->database_handler->prepare($query);
+
+        if($statementHandler !== false){
+
+            $statementHandler->bindParam(":token",$token);
+            
+            $statementHandler->execute();
+
+            $return = $statementHandler->fetch()[0];
+
+            // print_r($return);
+
+            if(!empty($return)){
+                return $return;
+            }   else{
+                return -1;
+            }
+
+        }   else {
+            echo "kunde inte hämta id för användaren";
+            return -1;
+        }
+    }
+
+
+    // function för att hömta användarens data/info
+    private function getUserData($userID){
+
+        $query = "SELECT id, user, role FROM users WHERE id=:userID_IN";
+        $statementHandler = $this->database_handler->prepare($query);
+
+        if($statementHandler !== false){
+            
+            // något fel här 
+            $statementHandler->bindParam(":userID_IN", $userID);
+            $statementHandler->execute();
+
+            $return = $statementHandler->fetch();
+
+            
+            
+            // kolla om det finns en admin
+            if(!empty($return)){
+                return $return;
+            }   else{
+                return false;
+            }
+
+        }   else{
+            echo "kunde inte hämta användarens data/ inforamation";
+        }
+    }
+
+
+
+    // function för att kolla om användaren är admin
+    public function userAdmin($token){
+
+        // hämta functionerna "getUserId" och "getUserData"
+        $user_id = $this->getUserId($token);
+        $user_data = $this->getUserData($user_id);
+        
+        // något fel här
+        if($user_data['role'] == 1){
+            return true;
+        }   else{
+            return false;
+        }
+    }
 }
 
 ?>
