@@ -5,8 +5,6 @@
     $product_object = new Products($database_handler);
     $user_handler = new Users($database_handler);
 
-    // print_r($_POST);
-
     $token = $_POST['token'];
 
     // kolla om token är aktiv/ validerad
@@ -19,10 +17,8 @@
     $userAdmin = $user_handler->userAdmin($token);
 
     if($userAdmin === false){
-
         echo "inte behörighet";
         die();
-
     }
 
     // hämta de som skrivs
@@ -47,7 +43,6 @@
         }   else{
             echo "noooo!";
         }
-    
-    }   
+    }
 
 ?>
