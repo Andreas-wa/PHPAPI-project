@@ -29,10 +29,10 @@
 
     <form method="POST" action="v1/users/getUser.php">
         <h2>Login!</h2>
-        <input type="text" name="getUser" placeholder="username" required>
-        <br>
-        <input type="password" name="getPassword" placeholder="password" required>
-        <br>
+            <input type="text" name="getUser" placeholder="username" required>
+            <br>
+            <input type="password" name="getPassword" placeholder="password" required>
+            <br>
         <button type="submit" name="getSubmit">Login</button>
     </form>
     <!-- <a href="v1/users/addUser.php">Sign up</a> -->
@@ -41,10 +41,10 @@
 
     <form method="POST" action="v1/users/addUser.php">
         <h2>Sign up!</h2>
-        <input type="text" name="user" placeholder="Username" required>
-        <br>
-        <input type="password" name="password" placeholder="Password" required>
-        <br>
+            <input type="text" name="user" placeholder="Username" required>
+            <br>
+            <input type="password" name="password" placeholder="Password" required>
+            <br>
         <button type="submit" value="registrera">Sign up</button>
     </form> 
     
@@ -52,22 +52,20 @@
 
     <form method="POST" action="v1/posts/addProduct.php">
         <h2>Produkter!</h2>
-
-        <input type="text" name="product" placeholder="Namn på produkten...">
-        <br>
-        <input type="number" name="price" placeholder="Pris...">
-        <br>
-        <input type="text" name="size" placeholder="storlek...">
-        <br>
-        <input type="text" name="token" placeholder="token" />
-        <br>
+            <input type="text" name="product" placeholder="Namn på produkten...">
+            <br>
+            <input type="number" name="price" placeholder="Pris...">
+            <br>
+            <input type="text" name="size" placeholder="storlek...">
+            <br>
+            <input type="text" name="token" placeholder="token" />
+            <br>
         <button type="submit">Lägg till produkt</button>
     </form>
 
     <hr>
 
     <form method="POST" action="v1/posts/updateProduct.php">
-        
         <h2>Uppdatera produkten</h2>
             <input type="text" name="token" placeholder="token">
             <br>
@@ -80,22 +78,18 @@
             <input type="text" name="size" placeholder="size">
             <br>
         <button type="submit">Uppdatera produkten</button>
-
     </form>    
 
     <hr>
 
     <form method="POST" action="v1/posts/deleteProduct.php">
-
         <h2>Ta bort produkten!</h2>
             <input type="text" name="token" placeholder="token">
             <br>
             <input type="number" name="id" placeholder="id">
             <br>
         <button type="submit">Ta bort produkt</button>
-
     </form>
     
-    <!-- <a href="v1/posts/updateProduct.php">Uppdatera/Ändra</a> -->
 </body>
 </html>
