@@ -14,15 +14,16 @@ if(!empty($_POST['token'])) {
         // ge admin behörighet att ändra
         $userAdmin = $user_handler->userAdmin($token);
 
-        echo "Produkten som har blivit uppdaterad: ";
+        echo "Produkt som har blivit uppdaterad: ";
 
+        // om det inte är admin 
         if($userAdmin === false){
-
-        echo "inte behörighet";
-        die();
-
+            // error meddelande 
+            echo "Inte behörighet";
+            die();
         }
 
+        // validerar token
         if($user_handler->validateToken($token) === false) {
             $return_object = new stdClass;
             $return_object->error = "Token is invalid";

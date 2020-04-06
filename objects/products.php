@@ -147,6 +147,9 @@ class Products{
             $statmentHandler->execute();
         }
 
+
+
+        
         // välj alla products som finns 
         $query = "SELECT id, product, price, size FROM products WHERE id = :product_id";
         $statmentHandler = $this->database_handler->prepare($query);
