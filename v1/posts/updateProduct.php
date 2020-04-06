@@ -14,6 +14,8 @@ if(!empty($_POST['token'])) {
         // ge admin behörighet att ändra
         $userAdmin = $user_handler->userAdmin($token);
 
+        echo "Produkten som har blivit uppdaterad: ";
+
         if($userAdmin === false){
 
         echo "inte behörighet";
