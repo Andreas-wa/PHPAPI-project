@@ -26,6 +26,27 @@ class Products{
     }
 
 
+    // hämta en product
+    public function fetchSingleProduct() {
+
+        $query_string = "SELECT id, product, price, size FROM products WHERE id=:product_id";
+        $statmentHandler = $this->database_handler->prepare($query_string);
+
+        if($statmentHandler !== false) {
+            
+            $statmentHandler->bindParam(":product_id", $this->product_id);
+            $statmentHandler->execute();
+
+            return $statmentHandler->fetch();
+
+        } else {
+            echo "Could not create database statement!";
+            die();
+        }
+    }
+
+
+
     // function för att hämta alla products som har gjorts
     public function fetchAllProduct(){
 

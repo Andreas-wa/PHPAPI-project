@@ -2,7 +2,6 @@
     include("../../objects/products.php");
     include("../../objects/users.php");
 
-
     $product_object = new Products($database_handler);
     $user_handler = new Users($database_handler);
 
@@ -50,9 +49,5 @@
         }
     
     }   
-    // else{
-        // echo "nnnoooo!";
-    // }
-
 
 ?>
