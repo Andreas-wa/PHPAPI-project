@@ -1,0 +1,80 @@
+<?php
+
+include("../../config/database_handler.php");
+
+
+class orders {
+
+    private $database_handler;
+    private $order; 
+
+    // construct
+    public function __construct($database_handler_IN){
+        // koppling till databasen 
+        $this->database_handler = $database_handler_IN;
+    }
+
+    // lägger till en produkt till 
+    public function addOrders($token_param, $product_id_param){
+
+        // sql kod för att lägga till data
+        $query = "INSERT INTO orders(token, product_id) VALUES(:token, :product_id)";
+
+        // förbered
+        $statmentHandler = $this->database_handler->prepare($query);
+
+        // om det inte är tomt
+        if($statmentHandler !== false){
+
+            // bind ihop parametrar och sql
+            $statmentHandler->bindparam(':token', $token_param);
+            $statmentHandler->bindparam(':product_id', $product_id_param);
+            
+            // kör
+            $success = $statmentHandler->execute();
+
+            // om den körs
+            if($success === true){
+                echo "OK!";
+                //annars
+            } else {
+                echo "Error gick inte att skicka in data i databasen!";
+            }
+            // annars
+        } else {
+            echo "kunde inte göra en 'database statement!'";
+            die();
+        }
+    }
+
+
+    public function deleteOrder($delete_param){
+
+        // query (funkar)
+        $query = "DELETE FROM orders WHERE id = :ordersID";
+        // förbered
+        $statmentHandler = $this->database_handler->prepare($query);
+
+        // om den körs 
+        if($statmentHandler !== false){
+
+            // bind
+            $statmentHandler->bindparam(':ordersID', $delete_param['id']);
+            
+            // kör
+            $deleted = $statmentHandler->execute();
+
+            if($deleted == true){
+                echo "Deleted";
+            }   else{
+                echo "DeleteOrders funkar inte";
+            }
+        }
+    }
+
+
+    
+
+}
+
+?>

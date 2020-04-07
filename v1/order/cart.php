@@ -1,20 +1,21 @@
 <?php
 
+    include("../../objects/orders.php");
     include("../../objects/products.php");
+    include("../../objects/users.php");
 
-    $product_handler = new Products($database_handler);
+    $order_handler = new orders($database_handler);
 
-    $product_id = ( !empty($_GET['id'] ) ? $_GET['id'] : -1 );
+    echo $order_handler->addOrders($_POST['token'], $_POST['id']);
 
-    $product_handler->setProductId($product_id);
-    $product = $product_handler->fetchSingleProduct();
+    print_r($_POST);
 
-    echo "<center>";
-    echo "<span><h1>" . " " . $product['product']. "</h1></br></span><br/>";
-    echo "<span>  Description: </span>" . " " . $product['price']. "<br/>";
-    echo "<span><h3>  Description: </span>" . " " . $product['size']. " " . "</h3><br/>";
-    echo "<hr>";
-    echo "</center>";
+    // echo "<center>";
+    // echo "<span><h1>" . " " . $product['product']. "</h1></br></span><br/>";
+    // echo "<span>  Description: </span>" . " " . $product['price']. "<br/>";
+    // echo "<span><h3>  Description: </span>" . " " . $product['size']. " " . "</h3><br/>";
+    // echo "<hr>";
+    // echo "</center>";
 
 ?>
 

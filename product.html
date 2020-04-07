@@ -89,6 +89,30 @@
             <br>
         <button type="submit">Ta bort produkt</button>
     </form>
+
+    <hr>
+
+    <form method="POST" action="v1/order/cart.php">
+        <h2>Lägg i varukorg!</h2>
+            <input type="text" name="token" placeholder="token">
+            <br>
+            <input type="number" name="product_id" placeholder="product_id">
+            <br>
+        <button type="submit">Lägg till!</button>
+    </form>
+
+    <hr>
+
+    <form method="POST" action="v1/order/deleteOrders.php">
+        <h2>Ta bort order!</h2>
+            <input type="text" name="token" placeholder="token">
+            <br>
+            <input type="number" name="id" placeholder="id">
+            <br>
+        <button type="submit">Ta bort order</button>
+    </form>
+
+    <!-- <a href="v1/posts/getAllProducts.php">Titta på produkter</a> -->
     
 </body>
 </html>
