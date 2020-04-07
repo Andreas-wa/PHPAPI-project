@@ -3,7 +3,7 @@
 include("../../config/database_handler.php");
 
 
-class orders {
+class Orders {
 
     private $database_handler;
     private $order; 
@@ -48,6 +48,7 @@ class orders {
     }
 
 
+    // delete order
     public function deleteOrder($delete_param){
 
         // query (funkar)
@@ -73,6 +74,29 @@ class orders {
     }
 
 
+    // function för att checka ut 
+    public function checkOut($token_param){
+
+    // sql kod för att välja data
+    $query = "SELECT * FROM orders WHERE token=:token";
+
+    // förbered databasen 
+    $statmentHandler = $this->database_handler->prepare($query);  
+
+    // om det är sant(om det inte är falskt)
+    if($statmentHandler !== false){
+        // bind parameter och sql kod
+        $statmentHandler->bindparam(":token", $token_param);
+        $statmentHandler->execute();
+
+        return $statmentHandler->fetchAll();
+
+    }   else{
+        // skriv ut error medelande om det inte funkar
+        echo "could not create database statment";
+        die;
+    }
+}
     
 
 }

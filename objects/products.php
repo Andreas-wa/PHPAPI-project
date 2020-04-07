@@ -65,10 +65,8 @@ class Products{
             return $statmentHandler->fetchAll();
 
         }   else{
-
             echo "could not create database statment";
             die;
-
         }
     }    
 
@@ -149,7 +147,7 @@ class Products{
 
 
 
-        
+
         // välj alla products som finns 
         $query = "SELECT id, product, price, size FROM products WHERE id = :product_id";
         $statmentHandler = $this->database_handler->prepare($query);
