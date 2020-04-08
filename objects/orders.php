@@ -97,8 +97,30 @@ class Orders {
         die;
     }
 }
-    
 
+
+    // function för att skicka in i databasen
+    public function addToDatabase($token_param){
+
+        // query
+        $query = "INSERT INTO checkout(token) VALUES(:token)";
+        // prepare
+        $statementHandler = $this->database_handler->prepare($query);
+        
+        // kolla statmentHandler 
+        if($statementHandler !== false){
+            
+            // bind parametrar och query
+            $statementHandler->bindParam(":token", $token_param);
+
+            // kör statmenthandler
+            $statementHandler->execute();
+
+            // annars
+        }   else {
+            return "nooooo!!, gick inte att checka utt";
+        }
+    }
 }
 
 ?>

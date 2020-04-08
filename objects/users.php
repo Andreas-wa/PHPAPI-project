@@ -189,7 +189,6 @@ class Users {
 
         return $token;
 
-
     }
 
     // function för att checka token 
@@ -416,7 +415,6 @@ class Users {
             echo "kunde inte hämta användarens data/ inforamation";
         }
     }
-
 
 
     // function för att kolla om användaren är admin

@@ -19,20 +19,16 @@ if(!empty($_POST['token'])) {
             echo json_encode($return_object);
             die();
         }
+        
+        echo $order_handler->addToDatabase($_POST['token']);
 
-        // foreach($order_handler->checkOut($_POST['token']) as $order){
+        echo "<pre>";
+        print_r($order_handler->checkOut($_POST['token']));
+        echo "</pre>";
 
-    // echo "<center>";
-    // echo "<span><h1>" . " " . $order['product']. "</h1></br></span><br/>";
-    // echo "<span>  Description: </span>" . " " . $order['price']. "<br/>";
-    // echo "<span><h3>  Description: </span>" . " " . $order['size']. " " . "</h3><br/>";
-    // // echo "<a href='getProduct.php?id={$product['id']}'>Köp</a>";
-    // echo "<a href='../order/cart.php?id={$order['id']}'>Köp</a>";
-    // echo "<hr>";
-    // echo "</center>";
 
-// }
-        // echo $order_handler->checkOut($_POST);
+        // echo $order_handler->addToDatabase($_POST['token']);
+
 
 } else {
     $return_object = new stdClass;
@@ -42,8 +38,8 @@ if(!empty($_POST['token'])) {
     echo json_encode($return_object);
 }
 
-echo "<pre>";
-print_r($order_handler->checkOut($_POST['token']));
-echo "<pre>";
+// echo "<pre>";
+// print_r($order_handler->checkOut($_POST['token']));
+// echo "<pre>";
 
 ?>
