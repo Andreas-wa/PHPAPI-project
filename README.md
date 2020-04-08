@@ -81,5 +81,3 @@ Varukorg:
     lägga till produkter i varukorg
     ta bort produkter från varukorg
     checka ut varukorgen
-
-
