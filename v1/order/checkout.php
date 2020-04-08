@@ -19,16 +19,12 @@ if(!empty($_POST['token'])) {
             echo json_encode($return_object);
             die();
         }
-        
-        echo $order_handler->addToDatabase($_POST['token']);
+
+        echo $order_handler->checkoutToDatabase($_POST['token']);
 
         echo "<pre>";
         print_r($order_handler->checkOut($_POST['token']));
         echo "</pre>";
-
-
-        // echo $order_handler->addToDatabase($_POST['token']);
-
 
 } else {
     $return_object = new stdClass;
@@ -38,8 +34,5 @@ if(!empty($_POST['token'])) {
     echo json_encode($return_object);
 }
 
-// echo "<pre>";
-// print_r($order_handler->checkOut($_POST['token']));
-// echo "<pre>";
 
 ?>

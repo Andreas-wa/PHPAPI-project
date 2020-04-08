@@ -100,10 +100,10 @@ class Orders {
 
 
     // function för att skicka in i databasen
-    public function addToDatabase($token_param){
+    public function checkoutToDatabase($token_param){
 
         // query
-        $query = "INSERT INTO checkout(token) VALUES(:token)";
+        $query = "INSERT INTO checkout SELECT * FROM orders WHERE token=:token";
         // prepare
         $statementHandler = $this->database_handler->prepare($query);
         
@@ -112,6 +112,8 @@ class Orders {
             
             // bind parametrar och query
             $statementHandler->bindParam(":token", $token_param);
+            // $statementHandler->bindParam(":product_id", $product_id_param);
+
 
             // kör statmenthandler
             $statementHandler->execute();
