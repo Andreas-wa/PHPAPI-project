@@ -7,6 +7,7 @@
     $user_handler = new users($database_handler);
 
     print_r($_POST);
+    
     if(!empty($_POST['token'])) {
 
         if(!empty($_POST['id'])) { 
@@ -22,7 +23,8 @@
             die();
 
             }
-    
+            
+            // kollar om token inte är aktiv
             if($user_handler->validateToken($token) === false) {
                 $return_object = new stdClass;
                 $return_object->error = "Token is invalid";
@@ -32,7 +34,8 @@
             }
     
             echo $product_handler->deleteProduct($_POST);
-    
+            
+            // kollar om id:et stämmer
         } else {
             $return_object = new stdClass;
             $return_object->error = "Invalid id!";
@@ -41,6 +44,7 @@
             echo json_encode($return_object);
         }
     
+        // kollar om token finns
     } else {
         $return_object = new stdClass;
         $return_object->error = "No token found!";

@@ -1,10 +1,8 @@
 <?php
 
-include('../../objects/products.php');
 include('../../objects/users.php');
 include("../../objects/orders.php");
 
-$product_handler = new Products($database_handler);
 $user_handler = new Users($database_handler);
 $order_handler = new Orders($database_handler);
 
@@ -20,8 +18,10 @@ if(!empty($_POST['token'])) {
             die();
         }
 
+        // skickar allt till databasen
         echo $order_handler->checkoutToDatabase($_POST['token']);
 
+        // skriver ut allt som användaren har lagg till i carten
         echo "<pre>";
         print_r($order_handler->checkOut($_POST['token']));
         echo "</pre>";

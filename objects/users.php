@@ -38,14 +38,14 @@ class Users {
             $return = $this->addToDatabase($user_IN, $password_IN);
             if($return !== false){
 
-                // 
                 $return_object->state = "Success";
                 $return_object->user = $return;
                 
             }   else{
                 // annars kommer den att ge ett error meddelande
-                $return_object->state = "ERROR!";
-                $return_object->message = "gick inte att lagga till anvandare i databasen!";
+                // fel med error meddelande
+                // $return_object->state = "ERROR!";
+                // $return_object->message = "gick inte att lagga till anvandare i databasen!";
             }
             
             // om det finns skriv ut error
@@ -70,7 +70,7 @@ class Users {
         // om den är sann gå vidare till nästa steg
         if ($statementHandler !== false) {
             
-            // variabel för md5 lösenord
+            // encrytar för md5 lösenord
             $secPassword = md5($password_param);
 
             // koppla ihop queryn med det som skrivs in i inputsen
@@ -85,8 +85,8 @@ class Users {
 
         }   else{
             // om det inte finns retunera felmeddelande
-            echo "addtodatabae error!";
-           return false;
+            echo "addToDatabae error!";
+            return false;
         }
     }
 
@@ -186,7 +186,7 @@ class Users {
 
         // hämta token för användare
         $token = $this->checkToken($userID);
-
+        // retunera token
         return $token;
 
     }

@@ -5,6 +5,7 @@
 
     print_r($_POST);
 
+    // skicka vidare till databasen
     echo $users_handler->addUser($_POST['user'], $_POST['password']);
    
 

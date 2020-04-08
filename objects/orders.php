@@ -112,8 +112,6 @@ class Orders {
             
             // bind parametrar och query
             $statementHandler->bindParam(":token", $token_param);
-            // $statementHandler->bindParam(":product_id", $product_id_param);
-
 
             // kör statmenthandler
             $statementHandler->execute();
